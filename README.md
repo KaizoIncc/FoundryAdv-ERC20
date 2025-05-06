@@ -1,66 +1,86 @@
-## Foundry
+# 🪙 FoundryAdv-ERC20
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Este proyecto demuestra la implementación de un token ERC20 utilizando [Foundry](https://book.getfoundry.sh/), una herramienta rápida y modular para el desarrollo de aplicaciones en Ethereum. El contrato aprovecha las bibliotecas de [OpenZeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts) para garantizar una implementación segura y estándar.
 
-Foundry consists of:
+## 📦 Características
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- Token ERC20 personalizado con nombre y símbolo definidos.
+- Funcionalidades estándar: `transfer`, `approve`, `transferFrom`, `mint`, `burn`.
+- Uso de contratos de OpenZeppelin para seguridad y fiabilidad.
+- Scripts de despliegue y pruebas automatizadas con Foundry.
 
-## Documentation
+## 🗂️ Estructura del Proyecto
 
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+```
+FoundryAdv-ERC20/
+├── lib/                 # Dependencias externas (OpenZeppelin)
+├── script/              # Scripts de despliegue
+├── src/                 # Contratos fuente (ERC20)
+├── test/                # Pruebas en Solidity
+├── foundry.toml         # Configuración del proyecto Foundry
+├── Makefile             # Tareas automatizadas
+└── .gitignore           # Archivos y carpetas ignoradas por Git
 ```
 
-### Test
+## ⚙️ Requisitos Previos
 
-```shell
-$ forge test
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) instalado.
+- [Node.js](https://nodejs.org/) (opcional, para herramientas adicionales).
+- RPC URL (por ejemplo, de Alchemy o Infura).
+- Clave privada con fondos en una testnet (por ejemplo, Sepolia).
+
+## 🚀 Uso
+
+### 🔨 Compilar
+
+```bash
+forge build
 ```
 
-### Format
+### ✅ Probar
 
-```shell
-$ forge fmt
+```bash
+forge test
 ```
 
-### Gas Snapshots
+### 🧪 Tomar una instantánea de gas
 
-```shell
-$ forge snapshot
+```bash
+forge snapshot
 ```
 
-### Anvil
+### 🛠️ Desplegar
 
-```shell
-$ anvil
+```bash
+forge script script/DeployToken.s.sol:DeployToken --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify
 ```
 
-### Deploy
+> Asegúrate de tener configuradas tus variables de entorno:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+```env
+SEPOLIA_RPC_URL=https://sepolia.infura.io/v3/tu-api-key
+PRIVATE_KEY=tu_clave_privada
+ETHERSCAN_API_KEY=tu_api_key
 ```
 
-### Cast
+## 🧪 Pruebas
 
-```shell
-$ cast <subcommand>
+Las pruebas están ubicadas en la carpeta `test/` y cubren:
+
+- Transferencias de tokens.
+- Aprobaciones y asignaciones.
+- Funciones de `mint` y `burn`.
+
+Ejecuta las pruebas con:
+
+```bash
+forge test -vv
 ```
 
-### Help
+## 📜 Licencia
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+Este proyecto está bajo la licencia MIT. Consulta el archivo [`LICENSE`](LICENSE) para más detalles.
+
+## 🙌 Agradecimientos
+
+Inspirado en las prácticas recomendadas de desarrollo de contratos inteligentes y en la comunidad de Ethereum.
